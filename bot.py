@@ -48,7 +48,7 @@ def authenticate():
             authed_users[response['authed_user']['id']] = {'token': response["authed_user"]["access_token"], 'webhook': ''} 
             db.update({'authed_users' : authed_users}, Team.id == response["team"]["id"])
 
-    return f"Click on this <a href='https://8d15df90.ngrok.io/{team_id}/{user_id}'>link</a> to edit your discord webhook."
+    return f"Click on this <a href='/{team_id}/{user_id}'>link</a> to edit your discord webhook."
 
 @app.route('/<tid>/<uid>', methods=["GET"])
 def modify_webhook(tid, uid):
