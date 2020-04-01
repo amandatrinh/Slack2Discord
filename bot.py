@@ -99,7 +99,7 @@ def get_user(team_id, user_id, token):
     users = workspace.find_one({'_id': team_id}, projection=['users'])['users']
     if user_id not in users:
         r = requests.get(base_url, params={"token": token, "user": user_id})
-        users = workspace.find_one_and_update({'_id': team_id}, {'$set': {f'users.{user_id}': r.json()["profile"]["real_name"]}}, return_document=ReturnDocument.AFTER)
+        users = workspace.find_one_and_update({'_id': team_id}, {'$set': {f'users.{user_id}': r.json()["profile"]["real_name"]}}, return_document=pymongo.collection.ReturnDocument.AFTER)
 
     return users[user_id]
 
@@ -108,7 +108,7 @@ def get_channel(team_id ,channel_id, token):
     channels = workspace.find_one({'_id': team_id}, projection=['channels'])['channels']
     if channel_id not in channels:
         r = requests.get(base_url, params={"token": token, "channel": channel_id})
-        channels = workspace.find_one_and_update({'_id': team_id}, {'$set': {f'channels.{channel_id}': r.json()["channel"]["name"]}}, return_document=ReturnDocument.AFTER)
+        channels = workspace.find_one_and_update({'_id': team_id}, {'$set': {f'channels.{channel_id}': r.json()["channel"]["name"]}}, return_document=pymongo.collection.ReturnDocument.AFTER)
 
     return channels[channel_id]
 
