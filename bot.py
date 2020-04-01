@@ -86,7 +86,7 @@ def handle_message(event_data):
                 requests.post(DISCORD_WEBHOOK, data={'content': message, 'username': name})
             elif message.get("subtype") == "message_changed":
                 name = get_user(team_id, message["message"]["user"], TOKEN)
-                utc_dt_og = utc.localize(datetime.datetime.utcfromtimestamp(int(message["previous_message"]["ts"].split(".")[0]))
+                utc_dt_og = utc.localize(datetime.datetime.utcfromtimestamp(int(message["previous_message"]["ts"].split(".")[0])))
                 us_dt_og = us_tz.normalize(utc_dt.astimezone(us_tz))
                 original_timestamp = us_dt_og.strftime('%I:%M %p')
                 message = f"```[#{channel}- {original_timestamp}] {message['previous_message']['text']}\n[#{channel}- {timestamp}](edited) {message['message']['text']} ```"
