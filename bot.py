@@ -6,7 +6,7 @@ import requests
 from secret import *
 import datetime
 import pymongo
-import pytz
+from pytz import utc, timezone
 
 client = pymongo.MongoClient(MONGO_URI)
 db = client.slack
